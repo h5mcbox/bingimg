@@ -33,4 +33,5 @@ jobs:
           git add .
           git commit -m "Auto Commit"
           git push origin master
-          curl -X POST -H "Content-Type: application/json" -d '{"value1":"Good!","value2":"Your picture is available.Address is","value3":"https://cdn.jsdelivr.net/gh/h5mcbox/bingimg@master/images/`date +%Y-%m-%d`.png"}' $ifttt_url
+          link="https://cdn.jsdelivr.net/gh/h5mcbox/bingimg@master/images/`date +%Y-%m-%d`.png"
+          curl -X POST -H "Content-Type: application/json" -d '{"value1":"Good!","value2":"Your picture is available.Address is","value3":$link}' $ifttt_url
