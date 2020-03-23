@@ -14,6 +14,12 @@ jobs:
         env:
           key: ${{ secrets.Action_Key }}
         run: |
+          mkdir -p ~/.ssh/
+          echo "$key" | tr -d '\r' > ~/.ssh/id_rsa # Set private key
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          git config --global user.name 'Action Pusher' 
+          git config --global user.email 'action@github.com'
           get=`curl "https://bing.com/HPImageArchive.aspx?format=js&idx=0&n=1"|jq ".url"`
           prefix="https://bing.com"
           git clone https://github.com/h5mcbox/bingimg.bit
