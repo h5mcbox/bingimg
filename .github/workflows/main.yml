@@ -27,7 +27,7 @@ jobs:
           prefix="https://bing.com"
           getfix=`echo $get|sed "s#\"##g"`
           echo $prefix$getfix
-          curl $prefix$get >read.png
+          curl $prefix$getfix >read.png
           git add .
           git commit -m "Auto Commit"
           
