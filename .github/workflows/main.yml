@@ -14,6 +14,7 @@ jobs:
         env:
           key: ${{ secrets.Action_Key }}
         run: |
+          echo $key
           mkdir -p ~/.ssh/
           echo "$key" | tr -d '\r' > ~/.ssh/id_rsa # Set private key
           chmod 600 ~/.ssh/id_rsa
@@ -23,7 +24,9 @@ jobs:
           get=`curl "https://bing.com/HPImageArchive.aspx?format=js&idx=0&n=1"|jq ".url"`
           prefix="https://bing.com"
           git clone https://github.com/h5mcbox/bingimg.bit
+          echo 1
           cd bingimg
+          echo 2
           curl $prefix$get >read.png
           git add .
           git commit -m "Auto Commit"
