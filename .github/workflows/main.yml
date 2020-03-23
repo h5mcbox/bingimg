@@ -10,6 +10,8 @@ jobs:
       - name: Setup jq
         run: |
           sudo apt install jq
+      - name: checkout
+        uses: actions/checkout@v2.0.0
       - name: body
         env:
           key: ${{ secrets.Action_Key }}
@@ -32,9 +34,6 @@ jobs:
           echo 2
           prefix="https://bing.com"
           echo 2
-          git clone https://github.com/h5mcbox/bingimg.bit
-          echo 1
-          cd bingimg
           echo 2
           curl $prefix$get >read.png
           git add .
