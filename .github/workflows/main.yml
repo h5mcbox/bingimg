@@ -1,7 +1,7 @@
 name: Bing img chatcher
 on: 
   schedule:
-    - cron: 00 03 * * *
+    - cron: 00 00 * * *
   push:
 jobs:
   runer:
@@ -15,8 +15,8 @@ jobs:
       - name: body
         env:
           key: ${{ secrets.Actions_Key }}
+          ifttt_url: ${{ secrets.IFTTT_Webhook_URL }}
         run: |
-          echo $key
           mkdir -p ~/.ssh/
           echo "$key" | tr -d '\r' > ~/.ssh/id_rsa # Set private key
           chmod 600 ~/.ssh/id_rsa
@@ -33,5 +33,4 @@ jobs:
           git add .
           git commit -m "Auto Commit"
           git push origin master
-          
-          
+          curl -X POST -H "Content-Type: application/json" -d '{"value1":"Good!","value2":"Your picture is available.Address is","value3":"https://cdn.jsdelivr.net/gh/h5mcbox/bingimg@master/images/`date +%Y-%m-%d`.png"}' $ifttt_url
