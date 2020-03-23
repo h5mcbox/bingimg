@@ -1,7 +1,7 @@
 name: Bing img chatcher
 on: 
   schedule:
-    - cron: 00 03 * * *
+    - cron: 00,05 03 * * *
   push:
 jobs:
   runer:
@@ -27,7 +27,7 @@ jobs:
           prefix="https://bing.com"
           getfix=`echo $get|sed "s#\"##g"`
           echo $prefix$getfix
-          # curl $prefix$get >read.png
+          curl $prefix$get >read.png
           git add .
           git commit -m "Auto Commit"
           
