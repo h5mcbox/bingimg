@@ -25,7 +25,8 @@ jobs:
           git config --global user.email 'action@github.com'
           get=`curl "https://bing.com/HPImageArchive.aspx?format=js&idx=0&n=1"|jq ".images[].url"`
           prefix="https://bing.com"
-          curl $prefix$get >read.png
+          echo $prefix$get
+          # curl $prefix$get >read.png
           git add .
           git commit -m "Auto Commit"
           
