@@ -1,0 +1,25 @@
+name: Bing img chatcher
+on: 
+  schedule:
+    - cron: 00 03 * * *
+  push:
+jobs:
+  runer:
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: Setup jq
+        run: |
+          sudo apt install jq
+      - name: body
+        env:
+          key: ${{ secrets.Action_Key }}
+        run: |
+          get=`curl "https://bing.com/HPImageArchive.aspx?format=js&idx=0&n=1"|jq ".url"`
+          prefix="https://bing.com"
+          git clone https://github.com/h5mcbox/bingimg.bit
+          cd bingimg
+          curl $prefix$get >read.png
+          git add .
+          git commit -m "Auto Commit"
+          
+          
