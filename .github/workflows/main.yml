@@ -27,8 +27,9 @@ jobs:
           prefix="https://bing.com"
           getfix=`echo $get|sed "s#\"##g"`
           echo $prefix$getfix
-          curl $prefix$getfix >read.png
+          curl $prefix$getfix > `date +%Y-%m-%d-%H-%M-%S`.png
           git add .
           git commit -m "Auto Commit"
+          git push origin master
           
           
