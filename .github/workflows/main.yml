@@ -17,24 +17,14 @@ jobs:
           key: ${{ secrets.Action_Key }}
         run: |
           echo $key
-          echo 2
           mkdir -p ~/.ssh/
-          echo 2
           echo "$key" | tr -d '\r' > ~/.ssh/id_rsa # Set private key
-          echo 2
           chmod 600 ~/.ssh/id_rsa
-          echo 2
           ssh-keyscan github.com >> ~/.ssh/known_hosts
-          echo 2
           git config --global user.name 'Action Pusher' 
-          echo 2
           git config --global user.email 'action@github.com'
-          echo 2
-          get=`curl "https://bing.com/HPImageArchive.aspx?format=js&idx=0&n=1"|jq ".url"`
-          echo 2
+          get=`curl "https://bing.com/HPImageArchive.aspx?format=js&idx=0&n=1"|jq ".images[].url"`
           prefix="https://bing.com"
-          echo 2
-          echo 2
           curl $prefix$get >read.png
           git add .
           git commit -m "Auto Commit"
