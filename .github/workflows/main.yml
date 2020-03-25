@@ -1,7 +1,7 @@
 name: Bing img chatcher
 on: 
   schedule:
-    - cron: 05 00 * * *
+    - cron: 55 23 * * *
   push:
 jobs:
   runer:
